@@ -1,0 +1,137 @@
+Table clients {
+  id integer [primary key, increment]
+  company_name text [not null]
+  contact_name text
+  email text [unique]
+  phone text
+  address text
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [default: `CURRENT_TIMESTAMP`]
+}
+
+Table events {
+  id integer [primary key, increment]
+  client_id integer [not null, ref: > clients.id]
+  event_name text [not null]
+  event_date date
+  start_time datetime
+  end_time datetime
+  location text
+  max_guests integer
+  status text [default: 'scheduled', note: 'scheduled, active, completed, cancelled']
+  notes text
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [default: `CURRENT_TIMESTAMP`]
+}
+
+Table users {
+  id integer [primary key, increment]
+  event_id integer [not null, ref: > events.id]
+  name text [not null]
+  email text
+  phone text
+  age integer
+  max_drinks integer [default: 10]
+  drinks_consumed integer [default: 0]
+  is_vip boolean [default: 0]
+  table_number text
+  access_code text [unique]
+  checked_in boolean [default: 0]
+  check_in_time datetime
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [default: `CURRENT_TIMESTAMP`]
+  
+  indexes {
+    (event_id, email) [unique]
+  }
+}
+
+Table ingredients {
+  id integer [primary key, increment]
+  ingredient_name text [not null, unique]
+  category text [note: 'alcohol, juice, soda, syrup, other']
+  brand text
+  position text [unique]
+  alcohol_content real [default: 0]
+  unit text [default: 'ml', note: 'ml, oz, units']
+  cost_per_unit real [default: 0]
+  color text
+  is_available boolean [default: 1]
+  min_stock real [default: 100]
+  notes text
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [default: `CURRENT_TIMESTAMP`]
+}
+
+Table inventory {
+  id integer [primary key, increment]
+  event_id integer [not null, ref: > events.id]
+  ingredient_id integer [not null, ref: > ingredients.id]
+  initial_quantity real [default: 0]
+  current_quantity real [default: 0]
+  bottle_size integer [default: 750]
+  bottles_count integer [default: 1]
+  unit text [default: 'ml']
+  restock_alert_sent boolean [default: 0]
+  last_updated datetime [default: `CURRENT_TIMESTAMP`]
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  
+  indexes {
+    (event_id, ingredient_id) [unique]
+  }
+}
+
+Table cocktails {
+  id integer [primary key, increment]
+  cocktail_name text [not null, unique]
+  category text [note: 'classic, signature, mocktail, shot, custom']
+  description text
+  base_price real [default: 0]
+  image_url text
+  is_active boolean [default: 1]
+  is_alcoholic boolean [default: 1]
+  total_ml real [default: 0]
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [default: `CURRENT_TIMESTAMP`]
+}
+
+Table cocktail_ingredients {
+  id integer [primary key, increment]
+  cocktail_id integer [not null, ref: > cocktails.id]
+  ingredient_id integer [not null, ref: > ingredients.id]
+  quantity real [not null]
+  unit text [default: 'ml']
+  sequence integer [default: 1]
+  is_optional boolean [default: 0]
+  notes text
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  
+  indexes {
+    (cocktail_id, ingredient_id) [unique]
+  }
+}
+
+Table orders {
+  id integer [primary key, increment]
+  event_id integer [not null, ref: > events.id]
+  user_id integer [ref: > users.id]
+  cocktail_id integer [not null, ref: > cocktails.id]
+  status text [default: 'pending', note: 'pending, preparing, ready, delivered, cancelled']
+  queue_position integer
+  preparation_start datetime
+  preparation_end datetime
+  robot_commands text
+  total_ml real
+  price real
+  notes text
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime [default: `CURRENT_TIMESTAMP`]
+}
+
+Table order_consumption {
+  id integer [primary key, increment]
+  order_id integer [not null, ref: > orders.id]
+  ingredient_id integer [not null, ref: > ingredients.id]
+  quantity_used real [not null]
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+}

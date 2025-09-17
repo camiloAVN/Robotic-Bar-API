@@ -1,0 +1,1143 @@
+{
+	"info": {
+		"_postman_id": "e1bb1938-11e9-4115-86f2-239dbeb9f491",
+		"name": "Robotic-Bar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "48339582",
+		"_collection_link": "https://camiloavn-9973285.postman.co/workspace/Xenith's-Workspace~e41e1900-859c-4ed3-82b0-eae9426f8924/collection/48339582-e1bb1938-11e9-4115-86f2-239dbeb9f491?action=share&source=collection_link&creator=48339582"
+	},
+	"item": [
+		{
+			"name": "CLIENTS",
+			"item": [
+				{
+					"name": "get all clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/clients"
+					},
+					"response": []
+				},
+				{
+					"name": "post client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"company_name\": \"Fiesta Test SA\",\r\n    \"contact_name\": \"Juan Manager\",\r\n    \"email\": \"test@fiesta.com\",\r\n    \"phone\": \"555-0001\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/clients"
+					},
+					"response": []
+				},
+				{
+					"name": "get client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/clients/3"
+					},
+					"response": []
+				},
+				{
+					"name": "update client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"company_name\": \"Bar El Dorado 2.0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/clients/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3001/api/clients/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EVENTS",
+			"item": [
+				{
+					"name": "Create event",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": 1,\r\n    \"event_name\": \"Fiesta de Año Nuevo\",\r\n    \"event_date\": \"2025-12-31\",\r\n    \"start_time\": \"2025-12-31 20:00:00\",\r\n    \"end_time\": \"2025-12-31 23:59:00\",\r\n    \"location\": \"Salón Principal\",\r\n    \"max_guests\": 100,\r\n    \"status\": \"active\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/events"
+					},
+					"response": []
+				},
+				{
+					"name": "get events",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/events"
+					},
+					"response": []
+				},
+				{
+					"name": "get event filters",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/events?status=scheduled&client_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"events"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "scheduled"
+								},
+								{
+									"key": "client_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get event",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get client event",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/events/client/2"
+					},
+					"response": []
+				},
+				{
+					"name": "get active events",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/events/active"
+					},
+					"response": []
+				},
+				{
+					"name": "update event status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"status\": \"active\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/events/1/status"
+					},
+					"response": []
+				},
+				{
+					"name": "update event",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_name\": \"Boda García-Rodríguez VIP\",\r\n    \"event_date\": \"2024-12-15\",\r\n    \"start_time\": \"2024-12-15 17:00:00\",\r\n    \"end_time\": \"2024-12-15 23:30:00\",\r\n    \"location\": \"Salón Principal y Terraza\",\r\n    \"max_guests\": 200,\r\n    \"status\": \"scheduled\",\r\n    \"notes\": \"Aumentaron invitados\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3001/api/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "initialize event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/inventory/event/1/initialize"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,\r\n    \"name\": \"Carlos García\",\r\n    \"email\": \"carlos@email.com\",\r\n    \"phone\": \"555-1234\",\r\n    \"age\": 28,\r\n    \"max_drinks\": 5,\r\n    \"table_number\": \"Mesa 3\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "create users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,\r\n    \"users\": [\r\n      {\"name\": \"Ana López\", \"email\": \"ana@gmail.com\", \"age\": 28, \"is_vip\": true},\r\n      {\"name\": \"Pedro García\", \"email\": \"pedro@gmail.com\", \"age\": 17},\r\n      {\"name\": \"María Silva\", \"email\": \"maria@gmail.com\", \"age\": 30, \"table_number\": \"B2\"}\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/users/bulk"
+					},
+					"response": []
+				},
+				{
+					"name": "get users from a event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/users/event/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get user with token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/users/access/30F6E5"
+					},
+					"response": []
+				},
+				{
+					"name": "user checkin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/users/1/checkin"
+					},
+					"response": []
+				},
+				{
+					"name": "user add drink",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"quantity\": 1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/users/1/drink"
+					},
+					"response": []
+				},
+				{
+					"name": "users checked",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/users?checked_in=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "checked_in",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vip users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/users?is_vip=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "is_vip",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users from event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/users?event_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "event_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Carlos Martínez\",\r\n    \"max_drinks\": 8,\r\n    \"is_vip\": true,\r\n    \"table_number\": \"VIP-1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/users/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INGREDIENTS",
+			"item": [
+				{
+					"name": "create default ingredients",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3001/api/ingredients/default"
+					},
+					"response": []
+				},
+				{
+					"name": "get robot positions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/ingredients/positions/map"
+					},
+					"response": []
+				},
+				{
+					"name": "create ingredient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredient_name\": \"Chamber\",\r\n    \"category\": \"alcohol\",\r\n    \"position\": \"P25\",\r\n    \"alcohol_content\": 17,\r\n    \"cost_per_unit\": 0.9,\r\n    \"color\": \"#6F4E37\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/ingredients"
+					},
+					"response": []
+				},
+				{
+					"name": "get available positions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/ingredients/positions/available"
+					},
+					"response": []
+				},
+				{
+					"name": "get position",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/ingredients/position/P1"
+					},
+					"response": []
+				},
+				{
+					"name": "get ingredients by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/ingredients/category/alcohol"
+					},
+					"response": []
+				},
+				{
+					"name": "disable ingredient",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"is_available\": false}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/ingredients/1/availability"
+					},
+					"response": []
+				},
+				{
+					"name": "get stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/ingredients/stats"
+					},
+					"response": []
+				},
+				{
+					"name": "available ingredients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/ingredients?is_available=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "is_available",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ingredients with positions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/ingredients?has_position=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "has_position",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ingredients by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/ingredients?category=alcohol",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "alcohol"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ingredients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/ingredients"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INVENTORY",
+			"item": [
+				{
+					"name": "post inventory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,\r\n    \"ingredient_id\": 2,\r\n    \"bottles_count\": 2,\r\n    \"bottle_size\": 750\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/inventory"
+					},
+					"response": []
+				},
+				{
+					"name": "get inventory event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/inventory/event/1"
+					},
+					"response": []
+				},
+				{
+					"name": "consume inventory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"quantity\": 50}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/inventory/1/consume"
+					},
+					"response": []
+				},
+				{
+					"name": "restore inventory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"quantity\": 750}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/inventory/1/restock"
+					},
+					"response": []
+				},
+				{
+					"name": "get low stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/inventory/event/1/low-stock"
+					},
+					"response": []
+				},
+				{
+					"name": "check availability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,\r\n    \"ingredient_id\": 1,\r\n    \"quantity\": 100\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/inventory/check-availability"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COCKTAILS",
+			"item": [
+				{
+					"name": "create 10 default cocktails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3001/api/cocktails/default"
+					},
+					"response": []
+				},
+				{
+					"name": "get cocktails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/cocktails"
+					},
+					"response": []
+				},
+				{
+					"name": "get cocktail recipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/cocktails/1"
+					},
+					"response": []
+				},
+				{
+					"name": "get robot commands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/cocktails/1/robot-commands"
+					},
+					"response": []
+				},
+				{
+					"name": "check-availability event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"event_id\": 1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/cocktails/1/check-availability"
+					},
+					"response": []
+				},
+				{
+					"name": "create cocktail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cocktail_name\": \"Mi Cóctel Especial\",\r\n    \"category\": \"custom\",\r\n    \"description\": \"Creación única\",\r\n    \"base_price\": 15,\r\n    \"ingredients\": [\r\n      {\"ingredient_id\": 1, \"quantity\": 50},\r\n      {\"ingredient_id\": 6, \"quantity\": 100},\r\n      {\"ingredient_id\": 13, \"quantity\": 20}\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/cocktails"
+					},
+					"response": []
+				},
+				{
+					"name": "add ingredient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredient_id\": 14,\r\n    \"quantity\": 15,\r\n    \"sequence\": 4\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/cocktails/1/ingredients"
+					},
+					"response": []
+				},
+				{
+					"name": "delete ingredient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3001/api/cocktails/1/ingredients/14"
+					},
+					"response": []
+				},
+				{
+					"name": "get cocktail by ingredient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/cocktails/ingredient/1"
+					},
+					"response": []
+				},
+				{
+					"name": "clone cocktail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"new_name\": \"Margarita Premium\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/cocktails/1/clone"
+					},
+					"response": []
+				},
+				{
+					"name": "filter classic cocktail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/cocktails?category=classic",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"cocktails"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "classic"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get non alcohol cocktail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/cocktails?is_alcoholic=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"cocktails"
+							],
+							"query": [
+								{
+									"key": "is_alcoholic",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get active cocktails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/cocktails?is_active=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"cocktails"
+							],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ORDERS",
+			"item": [
+				{
+					"name": "create client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"company_name\": \"Hotel Test\", \"email\": \"test@hotel.com\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/clients"
+					},
+					"response": []
+				},
+				{
+					"name": "create event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": 1,\r\n    \"event_name\": \"Fiesta de Prueba\",\r\n    \"event_date\": \"2025-12-31\",\r\n    \"status\": \"active\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/events"
+					},
+					"response": []
+				},
+				{
+					"name": "initialize event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3001/api/inventory/event/2/initialize"
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,\r\n    \"name\": \"Juan Pérez\",\r\n    \"age\": 25,\r\n    \"max_drinks\": 5\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "user checkin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3001/api/users/1/checkin"
+					},
+					"response": []
+				},
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,\r\n    \"user_id\": 1,\r\n    \"cocktail_id\": 1,\r\n    \"notes\": \"Con poco hielo\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "get orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/orders/1"
+					},
+					"response": []
+				},
+				{
+					"name": "process order - cosume inventary",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3001/api/orders/1/process"
+					},
+					"response": []
+				},
+				{
+					"name": "active orders queue",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/orders/event/1/queue"
+					},
+					"response": []
+				},
+				{
+					"name": "get robot order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/orders/event/1/next"
+					},
+					"response": []
+				},
+				{
+					"name": "complete order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3001/api/orders/1/complete"
+					},
+					"response": []
+				},
+				{
+					"name": "get stats order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/orders/stats?event_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"orders",
+								"stats"
+							],
+							"query": [
+								{
+									"key": "event_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ROBOT",
+			"item": [
+				{
+					"name": "robot status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/robot/status"
+					},
+					"response": []
+				},
+				{
+					"name": "robot queue",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/api/robot/queue"
+					},
+					"response": []
+				},
+				{
+					"name": "manual comand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"commands\": [\"P1\", \"100\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/api/robot/command"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
