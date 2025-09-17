@@ -1,6 +1,6 @@
 # Robotic Bar API
 
-![Database Schema](./img/tabla.png)
+![Database Schema](./img/Tabla.png)
 
 A Node.js Express server with WebSocket support and SQLite database for managing a robotic bar system.
 
